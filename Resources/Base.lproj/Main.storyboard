@@ -3,12 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ParseStarterProject_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImageApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,8 +17,31 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ey1-sT-bNY">
+                                <rect key="frame" x="60" y="60" width="480" height="480"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOk-AG-D6D">
+                                <rect key="frame" x="263" y="22" width="74" height="30"/>
+                                <state key="normal" title="Pick Photo"/>
+                                <connections>
+                                    <action selector="cameraButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="mfo-MI-cMO"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ey1-sT-bNY" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="HyN-kB-f2p"/>
+                            <constraint firstItem="ey1-sT-bNY" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="TOe-A9-X67"/>
+                            <constraint firstItem="gOk-AG-D6D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zup-KN-I4d"/>
+                            <constraint firstItem="ey1-sT-bNY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="g6r-64-gGt"/>
+                            <constraint firstItem="ey1-sT-bNY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hk2-RQ-1wk"/>
+                            <constraint firstItem="ey1-sT-bNY" firstAttribute="top" secondItem="gOk-AG-D6D" secondAttribute="bottom" constant="8" symbolic="YES" id="yji-CK-Oja"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="ey1-sT-bNY" id="KdS-4y-tZr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
