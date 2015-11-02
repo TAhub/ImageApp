@@ -73,6 +73,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			imageView.image = image
 		}
 		
+		//upload current image
+		uploadCurrentImage()
+		
 		picker.dismissViewControllerAnimated(true)
 			{
 				self.picker = nil
@@ -88,23 +91,85 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 	
 	@IBOutlet weak var imageView: UIImageView!
 	
+	private func uploadArbitraryImageData(imageData:NSData) -> Bool
+	{
+		let fileSize = imageData.length / 1024 / 1024
+		print("File size is \(fileSize) MB")
+		
+		if fileSize >= 10
+		{
+			print("ERROR: too big to upload")
+			return false
+		}
+		else
+		{
+			let file = PFFile(data: imageData)
+			let imageObject = PFObject(className: "Image")
+			imageObject["data"] = file
+			imageObject.saveInBackgroundWithBlock()
+				{ (success, error) in
+					if let error = error
+					{
+						print(error)
+					}
+					else if success
+					{
+						print("Successfully uploaded")
+					}
+			}
+			return true
+		}
+	}
+	
+	private func uploadCurrentImage()
+	{
+		if let image = imageView.image
+		{
+			//attempts to save the image at increasingly-bad quality
+			//until eventually it works
+			
+			print("Attempting to upload as PNG")
+			if let imageData = UIImagePNGRepresentation(image)
+			{
+				if uploadArbitraryImageData(imageData)
+				{
+					return
+				}
+			}
+			
+			print("Attempting to upload as high-quality JPEG")
+			if let imageData = UIImageJPEGRepresentation(image, 1)
+			{
+				if uploadArbitraryImageData(imageData)
+				{
+					return
+				}
+			}
+			
+			print("Attempting to upload as medium-quality JPEG")
+			if let imageData = UIImageJPEGRepresentation(image, 0.5)
+			{
+				if uploadArbitraryImageData(imageData)
+				{
+					return
+				}
+			}
+			
+			print("Attempting to upload as low-quality JPEG")
+			if let imageData = UIImageJPEGRepresentation(image, 0)
+			{
+				if uploadArbitraryImageData(imageData)
+				{
+					return
+				}
+			}
+		}
+	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-		
-//		let status = PFObject(className: "Status")
-//		status["text"] = "Status text"
-//		status["location"] = "Seattle"
-//		status["array_example"] = ["haha", "this is an array", "it has stuff in it"]
-//		status.saveInBackgroundWithBlock()
-//			{ (success, error) -> Void in
-//				if success
-//				{
-//					print("Successfully saved to parse. Check parse console.")
-//				}
-//		}
-    }
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
