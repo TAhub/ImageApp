@@ -35,7 +35,7 @@
 		81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		81BA81801A49E10C00E65899 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		E47C9D641BE8105000B60223 /* W2D1Challenge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = W2D1Challenge.playground; path = Playgrounds/W2D1Challenge.playground; sourceTree = "<group>"; };
+		E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = W2D1Challenge.playground; path = Challenges/W2D1Challenge.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +120,7 @@
 		E47C9D651BE8105D00B60223 /* Coding Challenges */ = {
 			isa = PBXGroup;
 			children = (
-				E47C9D641BE8105000B60223 /* W2D1Challenge.playground */,
+				E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */,
 			);
 			name = "Coding Challenges";
 			sourceTree = "<group>";
