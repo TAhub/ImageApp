@@ -23,35 +23,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
 			{
 				//open a dialogue to finish this
-				if #available(iOS 8.0, *)
-				{
-				    let actionSheet = UIAlertController(title: "Where from?", message: "Should your use the camera, or the photo library?", preferredStyle: UIAlertControllerStyle.ActionSheet)
-					
-					let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
-						{ (action) -> Void in
-							self.finishPicker(UIImagePickerControllerSourceType.Camera)
-					}
-					actionSheet.addAction(cameraAction)
-					
-					let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default)
-						{ (action) -> Void in
-							self.finishPicker(UIImagePickerControllerSourceType.PhotoLibrary)
-					}
-					actionSheet.addAction(libraryAction)
-					
-					let cancelAction = UIAlertAction(title: "Nevermind", style: UIAlertActionStyle.Cancel)
-						{ (action) -> Void in
-							
-					}
-					actionSheet.addAction(cancelAction)
-					
-					presentViewController(actionSheet, animated: true, completion: nil)
+				let actionSheet = UIAlertController(title: "Where from?", message: "Should your use the camera, or the photo library?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+				
+				let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
+					{ (action) -> Void in
+						self.finishPicker(UIImagePickerControllerSourceType.Camera)
 				}
-				else
-				{
-					//just load the camera for now I guess
-					finishPicker(UIImagePickerControllerSourceType.Camera)
+				actionSheet.addAction(cameraAction)
+				
+				let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default)
+					{ (action) -> Void in
+						self.finishPicker(UIImagePickerControllerSourceType.PhotoLibrary)
 				}
+				actionSheet.addAction(libraryAction)
+				
+				let cancelAction = UIAlertAction(title: "Nevermind", style: UIAlertActionStyle.Cancel)
+					{ (action) -> Void in
+						
+				}
+				actionSheet.addAction(cancelAction)
+				
+				presentViewController(actionSheet, animated: true, completion: nil)
 			}
 			else
 			{
@@ -93,16 +85,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 	
 	private func uploadArbitraryImageData(imageData:NSData) -> Bool
 	{
+		//get the file size of the image data, in MB
 		let fileSize = imageData.length / 1024 / 1024
-		print("File size is \(fileSize) MB")
 		
 		if fileSize >= 10
 		{
-			print("ERROR: too big to upload")
+			print("ERROR: file size of \(fileSize) MB is too big to upload")
 			return false
 		}
 		else
 		{
+			print("File size of \(fileSize) MB should be okay to upload")
 			let file = PFFile(data: imageData)
 			let imageObject = PFObject(className: "Image")
 			imageObject["data"] = file
