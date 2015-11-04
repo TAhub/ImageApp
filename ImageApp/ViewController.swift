@@ -74,6 +74,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			
 			actionSheet.addAction(makeFilterAction(image, title: "Blur Filter", message: "Blurred the image!", filter: FilterService.blurFilter))
 			
+			let cancelAction = UIAlertAction(title: "Nevermind", style: UIAlertActionStyle.Cancel)
+				{ (action) in
+					
+			}
+			actionSheet.addAction(cancelAction)
+			
 			presentViewController(actionSheet, animated: true, completion: nil)
 		}
 	}
