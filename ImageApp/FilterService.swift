@@ -78,6 +78,23 @@ class FilterService
 		}
 	}
 	
+	class func superSaturFilter(image:UIImage, completion: (String?, UIImage?)->())
+	{
+		let parameters = [kCIInputImageKey:CIImage(image: image)!, kCIInputSaturationKey:NSNumber(double: 1.15), kCIInputBrightnessKey:NSNumber(double: 0.75), kCIInputContrastKey:NSNumber(double: 1.0)]
+		let image = FilterService.filter("CIColorControls", filterParameters: parameters)
+		dispatch_async(dispatch_get_main_queue())
+			{
+				if let image = image
+				{
+					completion(nil, image)
+				}
+				else
+				{
+					completion("ERROR: unable to process image", nil)
+				}
+		}
+	}
+	
 	class func blurFilter(image:UIImage, completion: (String?, UIImage?)->())
 	{
 		let image = FilterService.filter("CIBoxBlur", filterParameters: [kCIInputImageKey:CIImage(image: image)!, kCIInputRadiusKey:NSNumber(double: 35)])

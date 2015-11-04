@@ -62,6 +62,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			
 			actionSheet.addAction(makeFilterAction(image, title: "Black and White Filter", message: "Artified the image!", filter: FilterService.blackAndWhiteFilter))
 			actionSheet.addAction(makeFilterAction(image, title: "Halo Filter", message: "Halo'd the image!", filter: FilterService.haloFilter))
+			actionSheet.addAction(makeFilterAction(image, title: "The Saturator", message: "It got saturated!", filter: FilterService.superSaturFilter))
 			
 			//kaleidoscope was introduced in iOS 9, so it should be conditional
 			if #available(iOS 9, *)

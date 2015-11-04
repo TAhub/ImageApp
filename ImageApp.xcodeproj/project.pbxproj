@@ -40,6 +40,7 @@
 		81BA81801A49E10C00E65899 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		E44B383A1BE95D3500A75B5B /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		E44B383C1BE9689D00A75B5B /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizer.swift; path = ../ImageResizer.swift; sourceTree = "<group>"; };
+		E44B383E1BE9863B00A75B5B /* W2D2Challenge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = W2D2Challenge.playground; path = ImageApp/W2D2Challenge.playground; sourceTree = "<group>"; };
 		E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = W2D1Challenge.playground; path = Challenges/W2D1Challenge.playground; sourceTree = "<group>"; };
 		E484F1E41BE814F500D5A006 /* SplashView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +130,7 @@
 		E47C9D651BE8105D00B60223 /* Coding Challenges */ = {
 			isa = PBXGroup;
 			children = (
+				E44B383E1BE9863B00A75B5B /* W2D2Challenge.playground */,
 				E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */,
 			);
 			name = "Coding Challenges";
