@@ -23,14 +23,16 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOk-AG-D6D">
-                                <rect key="frame" x="218" y="22" width="74" height="30"/>
+                                <rect key="frame" x="211" y="20" width="81" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Pick Photo"/>
                                 <connections>
                                     <action selector="cameraButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="mfo-MI-cMO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oZ-gy-6om">
-                                <rect key="frame" x="308" y="22" width="87" height="30"/>
+                                <rect key="frame" x="308" y="20" width="96" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Photo Filters"/>
                                 <connections>
                                     <action selector="filterButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="bDm-cO-ZGl"/>
