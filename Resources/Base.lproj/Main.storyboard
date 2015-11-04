@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9tB-DU-Fp0">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Take Photo-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImageApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -63,12 +63,96 @@
                             </mask>
                         </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Take Photo" id="Lqb-O4-c9V"/>
                     <connections>
                         <outlet property="imageView" destination="ey1-sT-bNY" id="KdS-4y-tZr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1322" y="181"/>
+        </scene>
+        <!--Photo Gallery-->
+        <scene sceneID="313-u2-mme">
+            <objects>
+                <viewController id="BLJ-Fl-bnF" customClass="GalleryViewController" customModule="ImageApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H7H-0g-zWF"/>
+                        <viewControllerLayoutGuide type="bottom" id="z9g-CL-AAp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="smV-Vg-w4m">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="szc-F2-Ku5">
+                                <rect key="frame" x="20" y="20" width="560" height="531"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wDd-nT-R8P">
+                                    <size key="itemSize" width="302" height="376"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="nnY-Oa-DbL" customClass="GalleryCollectionViewCell" customModule="ImageApp" customModuleProvider="target">
+                                        <rect key="frame" x="129" y="0.0" width="302" height="376"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="302" height="376"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ThF-Hw-ZMu">
+                                                    <rect key="frame" x="8" y="8" width="286" height="360"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="ThF-Hw-ZMu" secondAttribute="bottom" id="3Ab-DH-FZJ"/>
+                                            <constraint firstItem="ThF-Hw-ZMu" firstAttribute="leading" secondItem="nnY-Oa-DbL" secondAttribute="leadingMargin" id="O1n-ve-fxp"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="ThF-Hw-ZMu" secondAttribute="trailing" id="sb2-1k-oKu"/>
+                                            <constraint firstItem="ThF-Hw-ZMu" firstAttribute="top" secondItem="nnY-Oa-DbL" secondAttribute="topMargin" id="tDt-3j-Ihx"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="ThF-Hw-ZMu" id="knv-HN-OfE"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="szc-F2-Ku5" secondAttribute="trailing" id="0yF-ml-dCR"/>
+                            <constraint firstItem="z9g-CL-AAp" firstAttribute="top" secondItem="szc-F2-Ku5" secondAttribute="bottom" id="ESb-qZ-OOl"/>
+                            <constraint firstItem="szc-F2-Ku5" firstAttribute="top" secondItem="H7H-0g-zWF" secondAttribute="bottom" id="Jgn-8R-dX3"/>
+                            <constraint firstItem="szc-F2-Ku5" firstAttribute="leading" secondItem="smV-Vg-w4m" secondAttribute="leadingMargin" id="U3Z-Z5-erf"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Photo Gallery" id="3OC-42-GFB"/>
+                    <connections>
+                        <outlet property="galleryView" destination="szc-F2-Ku5" id="Lpr-mz-jbQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OW0-Y9-cvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1322" y="872"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="1Ug-p8-zmH">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="9tB-DU-Fp0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Dw8-iR-qEa">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="X9R-99-dgE"/>
+                        <segue destination="BLJ-Fl-bnF" kind="relationship" relationship="viewControllers" id="Fj0-rY-4W3"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fMz-VS-JcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="510" y="181"/>
         </scene>
     </scenes>
 </document>
