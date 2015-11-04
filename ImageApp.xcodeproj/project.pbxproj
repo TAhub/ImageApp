@@ -45,6 +45,7 @@
 		E45509D51BE9873C003B77A9 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		E4643A4B1BEAB0E800C81D3C /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		E4643A4D1BEAB54300C81D3C /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		E4643A4F1BEAC59000C81D3C /* W2D3Challenge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = W2D3Challenge.playground; path = Challenges/W2D3Challenge.playground; sourceTree = "<group>"; };
 		E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = W2D1Challenge.playground; path = Challenges/W2D1Challenge.playground; sourceTree = "<group>"; };
 		E484F1E41BE814F500D5A006 /* SplashView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +137,7 @@
 		E47C9D651BE8105D00B60223 /* Coding Challenges */ = {
 			isa = PBXGroup;
 			children = (
+				E4643A4F1BEAC59000C81D3C /* W2D3Challenge.playground */,
 				E44B383E1BE9863B00A75B5B /* W2D2Challenge.playground */,
 				E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */,
 			);
