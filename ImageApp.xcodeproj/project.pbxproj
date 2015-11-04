@@ -17,6 +17,8 @@
 		81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81781A49E0DB00E65899 /* AudioToolbox.framework */; };
 		81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
+		E44B383B1BE95D3500A75B5B /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B383A1BE95D3500A75B5B /* FilterService.swift */; };
+		E44B383D1BE9689D00A75B5B /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44B383C1BE9689D00A75B5B /* ImageResizer.swift */; };
 		E484F1E51BE814F500D5A006 /* SplashView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E484F1E41BE814F500D5A006 /* SplashView.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +38,8 @@
 		81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		81BA81801A49E10C00E65899 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		E44B383A1BE95D3500A75B5B /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
+		E44B383C1BE9689D00A75B5B /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizer.swift; path = ../ImageResizer.swift; sourceTree = "<group>"; };
 		E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = W2D1Challenge.playground; path = Challenges/W2D1Challenge.playground; sourceTree = "<group>"; };
 		E484F1E41BE814F500D5A006 /* SplashView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +95,8 @@
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
 				814C3AC61B69877600E307BB /* Main.storyboard */,
+				E44B383C1BE9689D00A75B5B /* ImageResizer.swift */,
+				E44B383A1BE95D3500A75B5B /* FilterService.swift */,
 				E484F1E41BE814F500D5A006 /* SplashView.storyboard */,
 			);
 			path = ImageApp;
@@ -217,6 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E44B383D1BE9689D00A75B5B /* ImageResizer.swift in Sources */,
+				E44B383B1BE95D3500A75B5B /* FilterService.swift in Sources */,
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 			);
@@ -325,7 +333,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = ImageApp;
 			};
@@ -340,7 +348,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = ImageApp;
 			};

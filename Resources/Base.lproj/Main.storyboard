@@ -23,22 +23,45 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOk-AG-D6D">
-                                <rect key="frame" x="263" y="22" width="74" height="30"/>
+                                <rect key="frame" x="218" y="22" width="74" height="30"/>
                                 <state key="normal" title="Pick Photo"/>
                                 <connections>
                                     <action selector="cameraButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="mfo-MI-cMO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oZ-gy-6om">
+                                <rect key="frame" x="308" y="22" width="87" height="30"/>
+                                <state key="normal" title="Photo Filters"/>
+                                <connections>
+                                    <action selector="filterButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="bDm-cO-ZGl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvH-pH-fbM">
+                                <rect key="frame" x="300" y="52" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gvH-pH-fbM" firstAttribute="leading" secondItem="gOk-AG-D6D" secondAttribute="trailing" constant="8" symbolic="YES" id="1xK-uV-UZV"/>
+                            <constraint firstItem="gvH-pH-fbM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GPK-ZA-Hf7"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="HyN-kB-f2p"/>
+                            <constraint firstItem="ey1-sT-bNY" firstAttribute="top" secondItem="3oZ-gy-6om" secondAttribute="bottom" constant="8" symbolic="YES" id="JUj-u9-akt"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="TOe-A9-X67"/>
                             <constraint firstItem="gOk-AG-D6D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zup-KN-I4d"/>
+                            <constraint firstItem="ey1-sT-bNY" firstAttribute="top" secondItem="gvH-pH-fbM" secondAttribute="bottom" constant="8" symbolic="YES" id="g2R-vz-gaO"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="g6r-64-gGt"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hk2-RQ-1wk"/>
+                            <constraint firstItem="3oZ-gy-6om" firstAttribute="leading" secondItem="gvH-pH-fbM" secondAttribute="trailing" constant="8" symbolic="YES" id="oEL-kl-vDg"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="top" secondItem="gOk-AG-D6D" secondAttribute="bottom" constant="8" symbolic="YES" id="yji-CK-Oja"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Zup-KN-I4d"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="ey1-sT-bNY" id="KdS-4y-tZr"/>

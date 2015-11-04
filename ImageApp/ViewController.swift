@@ -26,19 +26,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 				let actionSheet = UIAlertController(title: "Where from?", message: "Should your use the camera, or the photo library?", preferredStyle: UIAlertControllerStyle.ActionSheet)
 				
 				let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
-					{ (action) -> Void in
+					{ (action) in
 						self.finishPicker(UIImagePickerControllerSourceType.Camera)
 				}
 				actionSheet.addAction(cameraAction)
 				
 				let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default)
-					{ (action) -> Void in
+					{ (action) in
 						self.finishPicker(UIImagePickerControllerSourceType.PhotoLibrary)
 				}
 				actionSheet.addAction(libraryAction)
 				
 				let cancelAction = UIAlertAction(title: "Nevermind", style: UIAlertActionStyle.Cancel)
-					{ (action) -> Void in
+					{ (action) in
 						
 				}
 				actionSheet.addAction(cancelAction)
@@ -51,6 +51,64 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 				finishPicker(UIImagePickerControllerSourceType.PhotoLibrary)
 			}
 		}
+	}
+	
+	@IBAction func filterButton()
+	{
+		//don't even open the action sheet up if there's no image to filter
+		if let image = imageView.image
+		{
+			let actionSheet = UIAlertController(title: "Which filter?", message: "Which filter do you want to use today?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+			
+			actionSheet.addAction(makeFilterAction(image, title: "Black and White Filter", message: "Artified the image!", filter: FilterService.blackAndWhiteFilter))
+			actionSheet.addAction(makeFilterAction(image, title: "Halo Filter", message: "Halo'd the image!", filter: FilterService.haloFilter))
+			
+			//kaleidoscope was introduced in iOS 9, so it should be conditional
+			if #available(iOS 9, *)
+			{
+				actionSheet.addAction(makeFilterAction(image, title: "Kaleidoscope Filter", message: "Kaleidoscoped the image!", filter: FilterService.kaleidoFilter))
+			}
+			
+			actionSheet.addAction(makeFilterAction(image, title: "Blur Filter", message: "Blurred the image!", filter: FilterService.blurFilter))
+			
+			presentViewController(actionSheet, animated: true, completion: nil)
+		}
+	}
+	
+	private func makeFilterAction(image:UIImage, title:String, message:String, filter:(UIImage, (String?, UIImage?)->())->()) -> UIAlertAction
+	{
+		let action = UIAlertAction(title: title, style: UIAlertActionStyle.Default)
+			{ (action) in
+				
+				//resize the image to make the filter faster
+				//specifically, rescale so that the smaller side is 600
+				let finalImage:UIImage
+				let minScale = min(image.size.width, image.size.height)
+				if minScale > 600
+				{
+					finalImage = image.resize(CGSize(width: image.size.width * 600 / minScale, height: image.size.height * 600 / minScale))
+				}
+				else
+				{
+					finalImage = image
+				}
+				
+				//apply the filter
+				filter(finalImage)
+					{ (error, image) in
+						if let error = error
+						{
+							print(error)
+						}
+						else if let image = image
+						{
+							self.imageView.image = image
+							print(message)
+							self.uploadCurrentImage()
+						}
+				}
+		}
+		return action;
 	}
 	
 	private func finishPicker(sourceType: UIImagePickerControllerSourceType)
@@ -118,44 +176,50 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 	{
 		if let image = imageView.image
 		{
-			//attempts to save the image at increasingly-bad quality
-			//until eventually it works
+			//resize the image to 600, if it's bigger
+			let resizedImage = image.resize(CGSize(width: min(image.size.width, 600), height: min(image.size.height, 600)))
 			
-			print("Attempting to upload as PNG")
-			if let imageData = UIImagePNGRepresentation(image)
+			if let imageData = UIImagePNGRepresentation(resizedImage)
 			{
-				if uploadArbitraryImageData(imageData)
-				{
-					return
-				}
+				uploadArbitraryImageData(imageData)
 			}
 			
-			print("Attempting to upload as high-quality JPEG")
-			if let imageData = UIImageJPEGRepresentation(image, 1)
-			{
-				if uploadArbitraryImageData(imageData)
-				{
-					return
-				}
-			}
-			
-			print("Attempting to upload as medium-quality JPEG")
-			if let imageData = UIImageJPEGRepresentation(image, 0.5)
-			{
-				if uploadArbitraryImageData(imageData)
-				{
-					return
-				}
-			}
-			
-			print("Attempting to upload as low-quality JPEG")
-			if let imageData = UIImageJPEGRepresentation(image, 0)
-			{
-				if uploadArbitraryImageData(imageData)
-				{
-					return
-				}
-			}
+			//my old code for changing image quality is no longer necessary, probably
+//			print("Attempting to upload as PNG")
+//			if let imageData = UIImagePNGRepresentation(resizedImage)
+//			{
+//				if uploadArbitraryImageData(imageData)
+//				{
+//					return
+//				}
+//			}
+//			
+//			print("Attempting to upload as high-quality JPEG")
+//			if let imageData = UIImageJPEGRepresentation(resizedImage, 1)
+//			{
+//				if uploadArbitraryImageData(imageData)
+//				{
+//					return
+//				}
+//			}
+//			
+//			print("Attempting to upload as medium-quality JPEG")
+//			if let imageData = UIImageJPEGRepresentation(resizedImage, 0.5)
+//			{
+//				if uploadArbitraryImageData(imageData)
+//				{
+//					return
+//				}
+//			}
+//			
+//			print("Attempting to upload as low-quality JPEG")
+//			if let imageData = UIImageJPEGRepresentation(resizedImage, 0)
+//			{
+//				if uploadArbitraryImageData(imageData)
+//				{
+//					return
+//				}
+//			}
 		}
 	}
 	
