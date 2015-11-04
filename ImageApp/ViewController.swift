@@ -65,6 +65,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			actionSheet.addAction(makeFilterAction(image, title: "The Saturator", message: "It got saturated!", filter: FilterService.superSaturFilter))
 			
 			//kaleidoscope was introduced in iOS 9, so it should be conditional
+			//yes, I know this throws a warning since I sent the development target to iOS 9
+			//it's more here for if I decide to set it back
 			if #available(iOS 9, *)
 			{
 				actionSheet.addAction(makeFilterAction(image, title: "Kaleidoscope Filter", message: "Kaleidoscoped the image!", filter: FilterService.kaleidoFilter))
