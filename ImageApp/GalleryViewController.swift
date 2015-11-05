@@ -10,19 +10,6 @@ import UIKit
 import Parse
 
 class GalleryViewController: UIViewController, UICollectionViewDataSource {
-
-	@IBOutlet weak var galleryView: UICollectionView!
-	{
-		didSet
-		{
-			galleryView.dataSource = self
-			galleryView.collectionViewLayout = GalleryLayout()
-			
-			//load the cells from nib
-			galleryView.registerNib(UINib(nibName: "GalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
-		}
-	}
-	
 	private var images = [UIImage]()
 	{
 		didSet
@@ -31,6 +18,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource {
 		}
 	}
 	
+	//MARK: dataSource
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
 	{
 		return images.count
@@ -45,10 +33,31 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource {
 		return cell
 	}
 	
+	//MARK: misc
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		//add the pinch gesture recognizer
+		let recognizer = UIPinchGestureRecognizer()
+		recognizer.addTarget(self, action: "pinchRecognize:")
+		view.addGestureRecognizer(recognizer)
+	}
+	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
 		getImages()
+	}
+	
+	func pinchRecognize(sender: UIPinchGestureRecognizer)
+	{
+		if let layout = galleryView.collectionViewLayout as? UICollectionViewFlowLayout
+		{
+			let itemSize = layout.itemSize
+			let size:CGFloat = max(min(sender.scale * itemSize.width, 300.0), 75.0)
+			layout.itemSize = CGSize(width: size, height: size)
+		}
+		sender.scale = 1
 	}
 	
 	private func getImages()
@@ -90,6 +99,18 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource {
 					}
 				}
 			}
+		}
+	}
+	
+	@IBOutlet weak var galleryView: UICollectionView!
+		{
+		didSet
+		{
+			galleryView.dataSource = self
+			galleryView.collectionViewLayout = GalleryLayout()
+			
+			//load the cells from nib
+			galleryView.registerNib(UINib(nibName: "GalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
 		}
 	}
 }

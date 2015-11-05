@@ -14,10 +14,10 @@ class GalleryLayout: UICollectionViewFlowLayout
 	{
 		super.init()
 		
-		minimumLineSpacing = 15.0
-		minimumInteritemSpacing = 15.0
-		itemSize = CGSize(width: 100.0, height: 100.0)
-		sectionInset = UIEdgeInsets(top: 2.0, left: 5.0, bottom: 5.0, right: 5.0)
+//		minimumLineSpacing = 15.0
+//		minimumInteritemSpacing = 15.0
+		itemSize = CGSize(width: 300, height: 300)
+//		sectionInset = UIEdgeInsets(top: 2.0, left: 5.0, bottom: 5.0, right: 5.0)
 	}
 
 	required init?(coder aDecoder: NSCoder) {

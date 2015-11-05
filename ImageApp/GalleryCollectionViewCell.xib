@@ -10,26 +10,32 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lmr-9G-sS1">
+                    <rect key="frame" x="20" y="41" width="560" height="539"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Il4-OX-v9Q">
-                    <rect key="frame" x="20" y="20" width="560" height="33"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="33"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lmr-9G-sS1">
-                    <rect key="frame" x="20" y="61" width="560" height="519"/>
-                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Il4-OX-v9Q" secondAttribute="trailing" constant="20" symbolic="YES" id="6Fn-f1-sUe"/>
+                <constraint firstAttribute="trailing" secondItem="Il4-OX-v9Q" secondAttribute="trailing" id="6Fn-f1-sUe"/>
                 <constraint firstItem="lmr-9G-sS1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="HhC-yc-60q"/>
                 <constraint firstAttribute="bottom" secondItem="lmr-9G-sS1" secondAttribute="bottom" constant="20" symbolic="YES" id="Lf8-50-aQ8"/>
-                <constraint firstItem="Il4-OX-v9Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="USv-dd-UVI"/>
-                <constraint firstItem="Il4-OX-v9Q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="hkP-xe-AFL"/>
+                <constraint firstAttribute="bottom" secondItem="lmr-9G-sS1" secondAttribute="bottom" constant="20" symbolic="YES" id="S0r-5p-sgj"/>
+                <constraint firstItem="Il4-OX-v9Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="USv-dd-UVI"/>
+                <constraint firstItem="Il4-OX-v9Q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hkP-xe-AFL"/>
                 <constraint firstItem="lmr-9G-sS1" firstAttribute="top" secondItem="Il4-OX-v9Q" secondAttribute="bottom" constant="8" symbolic="YES" id="say-XJ-tFs"/>
                 <constraint firstAttribute="trailing" secondItem="lmr-9G-sS1" secondAttribute="trailing" constant="20" symbolic="YES" id="wHo-ZK-GYN"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Lf8-50-aQ8"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="imageView" destination="lmr-9G-sS1" id="AZ4-qi-eg0"/>
                 <outlet property="label" destination="Il4-OX-v9Q" id="k8n-qg-rr4"/>

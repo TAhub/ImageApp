@@ -8,6 +8,13 @@
 
 import UIKit
 
+typealias filterFunction = (UIImage, (String?, UIImage?) -> ())->()
+
+protocol FilterViewDelegate
+{
+	func applyFilterToImage(filter:filterFunction)
+}
+
 class FilterViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	@IBOutlet weak var collectionView: UICollectionView!
@@ -31,7 +38,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
 	}
 	private var thumbnailBaseImage:UIImage!
 	
-	typealias filterFunction = (UIImage, (String?, UIImage?) -> ())->()
+	var delegate:FilterViewDelegate!
 	
 	private var filters = [(UIImage, String, filterFunction)]()
 	{
@@ -90,8 +97,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
 		
 		cell.imageView.image = filters[indexPath.row].0
 		cell.label.text = filters[indexPath.row].1
-		
-		print(filters[indexPath.row].1)
+		print(cell.label.text)
 		
 		return cell
 	}
@@ -99,34 +105,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
 	//MARK: delegate
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
 	{
-		performSegueWithIdentifier("applyFilterSegue", sender: collectionView.cellForItemAtIndexPath(indexPath))
-	}
-	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-	{
-		if segue.identifier == "applyFilterSegue"
-		{
-			if let destination = segue.destinationViewController as? ViewController, cell = sender as? UICollectionViewCell
-			{
-				let indexPath = collectionView.indexPathForCell(cell)!
-				let filter = filters[indexPath.row].2
-				
-				//resize the base image to make it easier to filter
-				let resizedImage = baseImage.resize(CGSize(width: min(baseImage.size.width, 600), height: min(baseImage.size.height, 600)))
-				
-				//filter the resized image
-				filter(resizedImage)
-				{ (error, image) in
-					if let error = error
-					{
-						print(error)
-					}
-					else
-					{
-						destination.imageView.image = image
-					}
-				}
-			}
-		}
+		performSegueWithIdentifier("applyFilterSegue", sender: self)
+		//delegate.applyFilterToImage(filters[indexPath].2)
 	}
 }

@@ -10,9 +10,18 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FilterViewDelegate {
 
 	var picker:UIImagePickerController?
+	
+	@IBAction func uploadButton()
+	{
+		if imageView.image != nil
+		{
+			uploadCurrentImage()
+		}
+	}
+	
 	
 	@IBAction func cameraButton()
 	{
@@ -124,8 +133,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 	{
 		if let image = imageView.image
 		{
-			//resize the image to 600, if it's bigger
-			let resizedImage = image.resize(CGSize(width: min(image.size.width, 600), height: min(image.size.height, 600)))
+			let resizedImage = resizeDown(image)
 			
 			if let imageData = UIImagePNGRepresentation(resizedImage)
 			{
@@ -134,22 +142,34 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 		}
 	}
 	
-	//MARK: segue stuff
+	private func resizeDown(image:UIImage) -> UIImage
+	{
+		//resize the image to make the filter faster
+		//specifically, rescale so that the smaller side is 600
+		let minScale = min(image.size.width, image.size.height)
+		if minScale > 600
+		{
+			imageView.image = image.resize(CGSize(width: image.size.width * 600 / minScale, height: image.size.height * 600 / minScale))
+		}
+		return image
+	}
 	
+	//MARK: segue stuff
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
 	{
 		if let destination = segue.destinationViewController as? FilterViewController
 		{
 			destination.baseImage = imageView.image
+			destination.delegate = self
 		}
 	}
 	
-	@IBAction func unwindApplyFilter(segue:UIStoryboardSegue)
+	func applyFilterToImage(filter: filterFunction)
 	{
-		//TODO: apply the filter
+		
 	}
 	
-	@IBAction func unwindCancel(segue:UIStoryboardSegue)
+	@IBAction func unwind(segue:UIStoryboardSegue)
 	{
 		//TODO: do nothing I guess
 	}
