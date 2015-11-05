@@ -56,68 +56,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 	@IBAction func filterButton()
 	{
 		//don't even open the action sheet up if there's no image to filter
-		if let image = imageView.image
+		if imageView.image != nil
 		{
-			let actionSheet = UIAlertController(title: "Which filter?", message: "Which filter do you want to use today?", preferredStyle: UIAlertControllerStyle.ActionSheet)
-			
-			actionSheet.addAction(makeFilterAction(image, title: "Black and White Filter", message: "Artified the image!", filter: FilterService.blackAndWhiteFilter))
-			actionSheet.addAction(makeFilterAction(image, title: "Halo Filter", message: "Halo'd the image!", filter: FilterService.haloFilter))
-			actionSheet.addAction(makeFilterAction(image, title: "The Saturator", message: "It got saturated!", filter: FilterService.superSaturFilter))
-			
-			//kaleidoscope was introduced in iOS 9, so it should be conditional
-			//yes, I know this throws a warning since I sent the development target to iOS 9
-			//it's more here for if I decide to set it back
-			if #available(iOS 9, *)
-			{
-				actionSheet.addAction(makeFilterAction(image, title: "Kaleidoscope Filter", message: "Kaleidoscoped the image!", filter: FilterService.kaleidoFilter))
-			}
-			
-			actionSheet.addAction(makeFilterAction(image, title: "Blur Filter", message: "Blurred the image!", filter: FilterService.blurFilter))
-			
-			let cancelAction = UIAlertAction(title: "Nevermind", style: UIAlertActionStyle.Cancel)
-				{ (action) in
-					
-			}
-			actionSheet.addAction(cancelAction)
-			
-			presentViewController(actionSheet, animated: true, completion: nil)
+			performSegueWithIdentifier("filterSegue", sender: self)
 		}
-	}
-	
-	private func makeFilterAction(image:UIImage, title:String, message:String, filter:(UIImage, (String?, UIImage?)->())->()) -> UIAlertAction
-	{
-		let action = UIAlertAction(title: title, style: UIAlertActionStyle.Default)
-			{ (action) in
-				
-				//resize the image to make the filter faster
-				//specifically, rescale so that the smaller side is 600
-				let finalImage:UIImage
-				let minScale = min(image.size.width, image.size.height)
-				if minScale > 600
-				{
-					finalImage = image.resize(CGSize(width: image.size.width * 600 / minScale, height: image.size.height * 600 / minScale))
-				}
-				else
-				{
-					finalImage = image
-				}
-				
-				//apply the filter
-				filter(finalImage)
-					{ (error, image) in
-						if let error = error
-						{
-							print(error)
-						}
-						else if let image = image
-						{
-							self.imageView.image = image
-							print(message)
-							self.uploadCurrentImage()
-						}
-				}
-		}
-		return action;
 	}
 	
 	private func finishPicker(sourceType: UIImagePickerControllerSourceType)
@@ -131,9 +73,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 		{
 			imageView.image = image
 		}
-		
-		//upload current image
-		uploadCurrentImage()
 		
 		picker.dismissViewControllerAnimated(true)
 			{
@@ -192,53 +131,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			{
 				uploadArbitraryImageData(imageData)
 			}
-			
-			//my old code for changing image quality is no longer necessary, probably
-//			print("Attempting to upload as PNG")
-//			if let imageData = UIImagePNGRepresentation(resizedImage)
-//			{
-//				if uploadArbitraryImageData(imageData)
-//				{
-//					return
-//				}
-//			}
-//			
-//			print("Attempting to upload as high-quality JPEG")
-//			if let imageData = UIImageJPEGRepresentation(resizedImage, 1)
-//			{
-//				if uploadArbitraryImageData(imageData)
-//				{
-//					return
-//				}
-//			}
-//			
-//			print("Attempting to upload as medium-quality JPEG")
-//			if let imageData = UIImageJPEGRepresentation(resizedImage, 0.5)
-//			{
-//				if uploadArbitraryImageData(imageData)
-//				{
-//					return
-//				}
-//			}
-//			
-//			print("Attempting to upload as low-quality JPEG")
-//			if let imageData = UIImageJPEGRepresentation(resizedImage, 0)
-//			{
-//				if uploadArbitraryImageData(imageData)
-//				{
-//					return
-//				}
-//			}
 		}
 	}
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+	//MARK: segue stuff
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+	{
+		if let destination = segue.destinationViewController as? FilterViewController
+		{
+			destination.baseImage = imageView.image
+		}
 	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	
+	@IBAction func unwindApplyFilter(segue:UIStoryboardSegue)
+	{
+		//TODO: apply the filter
+	}
+	
+	@IBAction func unwindCancel(segue:UIStoryboardSegue)
+	{
+		//TODO: do nothing I guess
+	}
 }

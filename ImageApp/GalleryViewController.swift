@@ -9,14 +9,17 @@
 import UIKit
 import Parse
 
-class GalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class GalleryViewController: UIViewController, UICollectionViewDataSource {
 
 	@IBOutlet weak var galleryView: UICollectionView!
 	{
 		didSet
 		{
 			galleryView.dataSource = self
-			galleryView.delegate = self
+			galleryView.collectionViewLayout = GalleryLayout()
+			
+			//load the cells from nib
+			galleryView.registerNib(UINib(nibName: "GalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
 		}
 	}
 	
@@ -41,11 +44,6 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 		
 		return cell
 	}
-	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-		return CGSize(width: 100, height: 100)
-	}
-	
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
