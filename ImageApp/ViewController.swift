@@ -166,7 +166,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 	
 	func applyFilterToImage(filter: filterFunction)
 	{
-		
+		if let image = imageView.image
+		{
+			let resized = resizeDown(image)
+			filter(resized)
+			{ (error, image) in
+				if let error = error
+				{
+					print(error)
+				}
+				else if let image = image
+				{
+					self.imageView.image = image
+				}
+			}
+		}
 	}
 	
 	@IBAction func unwind(segue:UIStoryboardSegue)

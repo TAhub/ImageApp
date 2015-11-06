@@ -23,6 +23,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
 		{
 			collectionView.delegate = self
 			collectionView.dataSource = self
+			collectionView.backgroundColor = UIColor.whiteColor()
 			collectionView.collectionViewLayout = GalleryLayout()
 			
 			//load the cells from nib
@@ -54,15 +55,15 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
 
 		//generate the filters
 		//...on the filter train! choo choo!
-		self.filterTrain(FilterService.blackAndWhiteFilter, title: "Black and White")
+		self.filterTrain(FilterService.blackAndWhiteFilter, title: "B&W")
 		{
 			self.filterTrain(FilterService.blurFilter, title: "Blur")
 			{
 				self.filterTrain(FilterService.haloFilter, title: "Halo")
 				{
-					self.filterTrain(FilterService.kaleidoFilter, title: "Kaleidoscope")
+					self.filterTrain(FilterService.kaleidoFilter, title: "Kaleido")
 					{
-						self.filterTrain(FilterService.superSaturFilter, title: "The Saturator") {}
+						self.filterTrain(FilterService.superSaturFilter, title: "Saturator") {}
 					}
 				}
 			}
@@ -97,7 +98,6 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
 		
 		cell.imageView.image = filters[indexPath.row].0
 		cell.label.text = filters[indexPath.row].1
-		print(cell.label.text)
 		
 		return cell
 	}
@@ -105,7 +105,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
 	//MARK: delegate
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
 	{
-		performSegueWithIdentifier("applyFilterSegue", sender: self)
-		//delegate.applyFilterToImage(filters[indexPath].2)
+		performSegueWithIdentifier("applyFilter", sender: self)
+		delegate.applyFilterToImage(filters[indexPath.row].2)
 	}
 }

@@ -104,17 +104,10 @@
 		81BA81471A49DA1800E65899 /* ImageApp */ = {
 			isa = PBXGroup;
 			children = (
-				E4643A4D1BEAB54300C81D3C /* GalleryCollectionViewCell.swift */,
-				E4643A4B1BEAB0E800C81D3C /* GalleryViewController.swift */,
+				E4F5B2541BEC25F3006C87C3 /* Model */,
+				E4F5B2551BEC25FE006C87C3 /* View */,
+				E4F5B2561BEC2603006C87C3 /* Controller */,
 				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
-				81BA814C1A49DA1800E65899 /* ViewController.swift */,
-				814C3AC61B69877600E307BB /* Main.storyboard */,
-				E4F5B2521BEC049A006C87C3 /* GalleryLayout.swift */,
-				E4F5B2501BEC027A006C87C3 /* FilterViewController.swift */,
-				E4F5B24E1BEC0092006C87C3 /* GalleryCollectionViewCell.xib */,
-				E45509D51BE9873C003B77A9 /* ImageResizer.swift */,
-				E44B383A1BE95D3500A75B5B /* FilterService.swift */,
-				E484F1E41BE814F500D5A006 /* SplashView.storyboard */,
 			);
 			path = ImageApp;
 			sourceTree = "<group>";
@@ -151,6 +144,37 @@
 				E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */,
 			);
 			name = "Coding Challenges";
+			sourceTree = "<group>";
+		};
+		E4F5B2541BEC25F3006C87C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E45509D51BE9873C003B77A9 /* ImageResizer.swift */,
+				E44B383A1BE95D3500A75B5B /* FilterService.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E4F5B2551BEC25FE006C87C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E484F1E41BE814F500D5A006 /* SplashView.storyboard */,
+				E4F5B24E1BEC0092006C87C3 /* GalleryCollectionViewCell.xib */,
+				814C3AC61B69877600E307BB /* Main.storyboard */,
+				E4F5B2521BEC049A006C87C3 /* GalleryLayout.swift */,
+				E4643A4D1BEAB54300C81D3C /* GalleryCollectionViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E4F5B2561BEC2603006C87C3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E4F5B2501BEC027A006C87C3 /* FilterViewController.swift */,
+				E4643A4B1BEAB0E800C81D3C /* GalleryViewController.swift */,
+				81BA814C1A49DA1800E65899 /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

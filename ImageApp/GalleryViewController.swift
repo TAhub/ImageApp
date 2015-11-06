@@ -108,6 +108,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource {
 		{
 			galleryView.dataSource = self
 			galleryView.collectionViewLayout = GalleryLayout()
+			galleryView.backgroundColor = UIColor.whiteColor()
 			
 			//load the cells from nib
 			galleryView.registerNib(UINib(nibName: "GalleryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
