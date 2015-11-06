@@ -7,6 +7,9 @@
 * of patent rights can be found in the PATENTS file in the same directory.
 */
 
+//tab bar icon courtsey of
+//Daniel Bruce			http://www.flaticon.com/authors/daniel-bruce
+
 import UIKit
 import Parse
 

@@ -6,6 +6,9 @@
 //  Copyright © 2015 Parse. All rights reserved.
 //
 
+//tab bar icon courtsey of
+//Freepik			http://www.flaticon.com/authors/freepik
+
 import UIKit
 import Parse
 
