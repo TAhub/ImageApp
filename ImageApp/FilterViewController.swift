@@ -63,7 +63,10 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
 				{
 					self.filterTrain(FilterService.kaleidoFilter, title: "Kaleido")
 					{
-						self.filterTrain(FilterService.superSaturFilter, title: "Saturator") {}
+						self.filterTrain(FilterService.superSaturFilter, title: "Saturator")
+						{
+							self.filterTrain(FilterService.randomBumpFilter, title: "Random Bump") {}
+						}
 					}
 				}
 			}

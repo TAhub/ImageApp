@@ -86,6 +86,33 @@ class FilterService
 		}
 	}
 	
+	class func randomBumpFilter(image:UIImage, completion: (String?, UIImage?)->())
+	{
+		//dispatch
+		dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0))
+		{
+			let center = CIVector(x: CGFloat(arc4random_uniform(UInt32(image.size.width))), y: CGFloat(arc4random_uniform(UInt32(image.size.height))))
+			let radius = NSNumber(int: Int32(min(image.size.width, image.size.height)) / 4)
+			
+			let parameters = [kCIInputImageKey:CIImage(image: image)!, kCIInputCenterKey:center, kCIInputRadiusKey:radius, kCIInputScaleKey: NSNumber(double: 0.85)]
+			
+			//resize it, since the filter changes the size of the image
+			let image = FilterService.filter("CIBumpDistortion", filterParameters: parameters)?.resize(image.size)
+			
+			dispatch_async(dispatch_get_main_queue())
+				{
+					if let image = image
+					{
+						completion(nil, image)
+					}
+					else
+					{
+						completion("ERROR: unable to process image", nil)
+					}
+			}
+		}
+	}
+	
 	class func superSaturFilter(image:UIImage, completion: (String?, UIImage?)->())
 	{
 		//dispatch
