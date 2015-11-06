@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ki-6h-wto">
+                                <rect key="frame" x="56" y="56" width="488" height="488"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ey1-sT-bNY">
                                 <rect key="frame" x="60" y="60" width="480" height="480"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,9 +53,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4Ki-6h-wto" firstAttribute="centerX" secondItem="ey1-sT-bNY" secondAttribute="centerX" id="27w-Rt-nTq"/>
+                            <constraint firstItem="4Ki-6h-wto" firstAttribute="height" secondItem="ey1-sT-bNY" secondAttribute="height" constant="8" id="79c-HL-E5v"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="top" secondItem="Okj-7U-Wto" secondAttribute="bottom" constant="8" symbolic="YES" id="9C0-Sl-LfY"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="HyN-kB-f2p"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="top" secondItem="3oZ-gy-6om" secondAttribute="bottom" constant="8" symbolic="YES" id="JUj-u9-akt"/>
+                            <constraint firstItem="4Ki-6h-wto" firstAttribute="width" secondItem="ey1-sT-bNY" secondAttribute="width" constant="8" id="LcM-pM-HjQ"/>
                             <constraint firstItem="Okj-7U-Wto" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NBQ-1c-83n"/>
                             <constraint firstItem="Okj-7U-Wto" firstAttribute="leading" secondItem="gOk-AG-D6D" secondAttribute="trailing" constant="8" symbolic="YES" id="NJj-04-Gfq"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="TOe-A9-X67"/>
@@ -59,6 +66,7 @@
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="g6r-64-gGt"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hk2-RQ-1wk"/>
                             <constraint firstItem="3oZ-gy-6om" firstAttribute="leading" secondItem="Okj-7U-Wto" secondAttribute="trailing" constant="8" symbolic="YES" id="iaK-PL-d1z"/>
+                            <constraint firstItem="4Ki-6h-wto" firstAttribute="centerY" secondItem="ey1-sT-bNY" secondAttribute="centerY" id="mhn-Fg-jQw"/>
                             <constraint firstItem="ey1-sT-bNY" firstAttribute="top" secondItem="gOk-AG-D6D" secondAttribute="bottom" constant="8" symbolic="YES" id="yji-CK-Oja"/>
                         </constraints>
                         <variation key="default">
@@ -67,8 +75,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Take Photo" id="Lqb-O4-c9V"/>
+                    <tabBarItem key="tabBarItem" title="Take Photo" image="camera3" id="Lqb-O4-c9V"/>
                     <connections>
+                        <outlet property="frameView" destination="4Ki-6h-wto" id="PCp-jX-D7D"/>
                         <outlet property="imageView" destination="ey1-sT-bNY" id="KdS-4y-tZr"/>
                         <segue destination="0T2-iu-98l" kind="presentation" identifier="filterSegue" id="rBn-Gv-unx"/>
                     </connections>
@@ -158,7 +167,7 @@
                             <constraint firstItem="szc-F2-Ku5" firstAttribute="leading" secondItem="smV-Vg-w4m" secondAttribute="leadingMargin" id="U3Z-Z5-erf"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Photo Gallery" id="3OC-42-GFB"/>
+                    <tabBarItem key="tabBarItem" title="Photo Gallery" image="picture31" id="3OC-42-GFB"/>
                     <connections>
                         <outlet property="galleryView" destination="szc-F2-Ku5" id="Lpr-mz-jbQ"/>
                     </connections>
@@ -186,4 +195,8 @@
             <point key="canvasLocation" x="510" y="181"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera3" width="32" height="32"/>
+        <image name="picture31" width="32" height="32"/>
+    </resources>
 </document>

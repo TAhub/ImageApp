@@ -130,6 +130,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 	
 	@IBOutlet weak var imageView: UIImageView!
 	
+	@IBOutlet weak var frameView: UIView!
+	{
+		didSet
+		{
+			frameView.painfulRainbowStart()
+		}
+	}
+	
 	private func uploadArbitraryImageData(imageData:NSData, withName:String) -> Bool
 	{
 		//get the file size of the image data, in MB
