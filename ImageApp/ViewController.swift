@@ -10,19 +10,48 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FilterViewDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FilterViewDelegate, UITextFieldDelegate {
 
 	var picker:UIImagePickerController?
 	
+	//MARK: upload
 	@IBAction func uploadButton()
 	{
 		if imageView.image != nil
 		{
-			uploadCurrentImage()
+			//open a dialog
+			let alert = UIAlertController(title: "Upload", message: "Please input a name for the image.", preferredStyle: UIAlertControllerStyle.Alert)
+			
+			alert.addTextFieldWithConfigurationHandler()
+			{ (textField) in
+				textField.placeholder = "My Photo"
+				textField.delegate = self
+			}
+			
+			let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel)
+			{ (alert) in
+				
+			}
+			alert.addAction(cancelAction)
+			
+			presentViewController(alert, animated: true, completion: nil)
 		}
 	}
 	
+	func textFieldDidEndEditing(textField: UITextField)
+	{
+		textField.resignFirstResponder()
+	}
 	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		//upload the current image with that text
+		//this can't be in textFieldDidEndEditing because otherwise pressing "cancel" will upload the image, haha
+		let text = textField.text ?? "Unnamed"
+		uploadCurrentImage(text == "" ? "Unnamed" : text)
+		return true
+	}
+	
+	//MARK: other buttons
 	@IBAction func cameraButton()
 	{
 		if picker == nil //don't want to have multiple simultaneous pickers
@@ -98,7 +127,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 	
 	@IBOutlet weak var imageView: UIImageView!
 	
-	private func uploadArbitraryImageData(imageData:NSData) -> Bool
+	private func uploadArbitraryImageData(imageData:NSData, withName:String) -> Bool
 	{
 		//get the file size of the image data, in MB
 		let fileSize = imageData.length / 1024 / 1024
@@ -114,6 +143,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			let file = PFFile(data: imageData)
 			let imageObject = PFObject(className: "Image")
 			imageObject["data"] = file
+			imageObject["name"] = withName
 			imageObject.saveInBackgroundWithBlock()
 				{ (success, error) in
 					if let error = error
@@ -129,7 +159,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 		}
 	}
 	
-	private func uploadCurrentImage()
+	private func uploadCurrentImage(withName:String)
 	{
 		if let image = imageView.image
 		{
@@ -137,7 +167,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			
 			if let imageData = UIImagePNGRepresentation(resizedImage)
 			{
-				uploadArbitraryImageData(imageData)
+				uploadArbitraryImageData(imageData, withName: withName)
 			}
 		}
 	}
@@ -149,7 +179,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 		let minScale = min(image.size.width, image.size.height)
 		if minScale > 600
 		{
-			imageView.image = image.resize(CGSize(width: image.size.width * 600 / minScale, height: image.size.height * 600 / minScale))
+			return image.resize(CGSize(width: image.size.width * 600 / minScale, height: image.size.height * 600 / minScale))
 		}
 		return image
 	}

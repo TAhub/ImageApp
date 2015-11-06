@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 class GalleryViewController: UIViewController, UICollectionViewDataSource {
-	private var images = [UIImage]()
+	private var images = [(UIImage, String)]()
 	{
 		didSet
 		{
@@ -28,7 +28,8 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource {
 	{
 		let cell = galleryView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) as! GalleryCollectionViewCell
 		
-		cell.imageView.image = images[indexPath.row]
+		cell.imageView.image = images[indexPath.row].0
+		cell.label.text = images[indexPath.row].1
 		
 		return cell
 	}
@@ -72,7 +73,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource {
 			else if let objects = objects
 			{
 				//clear the image array
-				self.images = [UIImage]()
+				self.images = [(UIImage, String)]()
 				
 				//do this on a dispatch thread because apparently getData is an intensive operation
 				//and if I do it on the main queue, Parse complains about it
@@ -81,14 +82,14 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource {
 				{
 					for object in objects
 					{
-						if let imageFile = object["data"] as? PFFile
+						if let imageFile = object["data"] as? PFFile, name = object["name"] as? String
 						{
 							do
 							{
 								let image = UIImage(data: try imageFile.getData())!
 								dispatch_async(dispatch_get_main_queue())
 								{
-									self.images.append(image)
+									self.images.append(image, name)
 								}
 							}
 							catch _
