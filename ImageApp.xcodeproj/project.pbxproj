@@ -54,6 +54,7 @@
 		E4F5B24E1BEC0092006C87C3 /* GalleryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		E4F5B2501BEC027A006C87C3 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		E4F5B2521BEC049A006C87C3 /* GalleryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryLayout.swift; sourceTree = "<group>"; };
+		E4F5B2571BEC305C006C87C3 /* W2D4Challenge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = W2D4Challenge.playground; path = Challenges/W2D4Challenge.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +140,7 @@
 		E47C9D651BE8105D00B60223 /* Coding Challenges */ = {
 			isa = PBXGroup;
 			children = (
+				E4F5B2571BEC305C006C87C3 /* W2D4Challenge.playground */,
 				E4643A4F1BEAC59000C81D3C /* W2D3Challenge.playground */,
 				E44B383E1BE9863B00A75B5B /* W2D2Challenge.playground */,
 				E484F1E31BE8124A00D5A006 /* W2D1Challenge.playground */,

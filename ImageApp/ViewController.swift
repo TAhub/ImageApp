@@ -22,6 +22,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 			//open a dialog
 			let alert = UIAlertController(title: "Upload", message: "Please input a name for the image.", preferredStyle: UIAlertControllerStyle.Alert)
 			
+			//for some reason, there's a collection view warning when I add a text field
+			//but it works fine
+			//who knows
 			alert.addTextFieldWithConfigurationHandler()
 			{ (textField) in
 				textField.placeholder = "My Photo"
